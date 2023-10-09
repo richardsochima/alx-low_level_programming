@@ -1,14 +1,24 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <time.h>
+#include <stdio.h>
+
 /**
- * main - print a message to stderr
- * Return: 0
+ * main - postive,zero or negative
+ *
+ * Return: Always 0 (success)
  */
 int main(void)
 {
-	char *error = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+	int n;
 
-	write(STDERR_FILENO, error, 59);
-	return (1);
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
+
+	if (n > 0)
+		printf("%d is positive\n", n);
+	else if (n < 0)
+		printf("%d is negative\n", n);
+	else
+		printf("%d is zero\n", n);
+	return (0);
 }
