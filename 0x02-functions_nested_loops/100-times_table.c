@@ -1,48 +1,48 @@
 #include "main.h"
 
 /**
- * print_times_table - prints the n times table, starting with 0
- * @n: number of the times table
+ * times_table - The function to print the 9 times table
+ *
+ * @: Prints out values
+ *
+ * Return: 0 The output is the 9 times table
+ *
  */
-void print_times_table(int n)
-{
-int a, b, c;
 
-if (n >= 0 && n <= 15)
+void times_table(void)
 {
-for (a = 0; a <= n; a++)
-{
-for (b = 0; b <= n; b++)
-{
-c = b * a;
-if (b == 0)
-{
-_putchar(c + '0');
-}
-else if (c < 10 && b != 0)
-{
-_putchar(',');
-_putchar(' ');
-_putchar(' ');
-_putchar(c + '0');
-}
-else if (c >= 10 && c < 100)
-{
-_putchar(',');
-_putchar(' ');
-_putchar((c / 10) + '0');
-_putchar((c % 10) + '0');
-}
-else if (c >= 100)
-{
-_putchar(',');
-_putchar(' ');
-_putchar((c / 100) + '0');
-_putchar(((c / 10) % 10) + '0');
-_putchar((c % 10) + '0');
-}
-}
-_putchar('\n');
-}
-}
-}
+	int i, j, output1, output2, output3;
+
+	for (i = 0; i < 10; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			output1 = i * j;
+			if (output1 > 9)
+			{
+				output2 = output1 / 10;
+				output3 = output1 % 10;
+				_putchar(' ');
+				_putchar(output2 + '0');
+				_putchar(output3 + '0');
+			}
+			else
+			{
+				if (j > 0 && j < 10)
+				{
+					_putchar(' ');
+					_putchar(' ');
+				}
+				_putchar(output1 + '0');
+			}
+
+			if (j < 9)
+			{
+				_putchar(',');
+			}
+		}
+
+		_putchar('\n');
+
+	}
+}}
