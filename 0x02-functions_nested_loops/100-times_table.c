@@ -1,48 +1,49 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
- * times_table - The function to print the 9 times table
- *
- * @: Prints out values
- *
- * Return: 0 The output is the 9 times table
- *
+ * print_times_table - Print the `n` times table, starting with 0.
+ * @n: int type number
+ * Return: void
  */
-
-void times_table(void)
+void print_times_table(int n)
 {
-	int i, j, output1, output2, output3;
+	int x = 0, y, z;
 
-	for (i = 0; i < 10; i++)
+	if (n > 15 || n < 0)
+		return;
+	while (x <= n)
 	{
-		for (j = 0; j < 10; j++)
+		for (y = 0; y <= n; y++)
 		{
-			output1 = i * j;
-			if (output1 > 9)
+			z = x * y;
+			if (z > 99)
 			{
-				output2 = output1 / 10;
-				output3 = output1 % 10;
+				_putchar(z / 100 + '0');
+				_putchar((z / 10 % 10) + '0');
+				_putchar(z % 10 + '0');
+			}
+			else if (z > 9)
+			{
 				_putchar(' ');
-				_putchar(output2 + '0');
-				_putchar(output3 + '0');
+				_putchar(z / 10 + '0');
+				_putchar(z % 10 + '0');
+			}
+			else if (y != 0)
+			{
+				_putchar(' ');
+				_putchar(' ');
+				_putchar(z + '0');
 			}
 			else
-			{
-				if (j > 0 && j < 10)
-				{
-					_putchar(' ');
-					_putchar(' ');
-				}
-				_putchar(output1 + '0');
-			}
+				_putchar(z + '0');
 
-			if (j < 9)
+			if (y != n)
 			{
 				_putchar(',');
+				_putchar(' ');
 			}
 		}
-
 		_putchar('\n');
-
+		x++;
 	}
 }
