@@ -52,11 +52,11 @@ while (f >= 0 || e >= 0 || overflow == 1)
 if (e < 0)
 val1 = 0;
 else
-val1 = *(n1 + e) - '0';
+val1 = *(n1 + e) -'0';
 if (f < 0)
 val2 = 0;
 else
-val2 = *(n2 + f) - '0';
+val2 = *(n2 + f) -'0';
 temp_tot = val1 + val2 + overflow;
 if (temp_tot >= 10)
 overflow = 1;
