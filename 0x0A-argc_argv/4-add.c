@@ -20,7 +20,8 @@ if (argc == 0)
 printf("0\n");
 return (0);
 }
-
+else
+{
 for (x = 1; x < argc; x++)
 {
 num = atoi(argv[x]);
@@ -28,6 +29,7 @@ if (num == 0 && argv[x][0] != '0')
 {
 printf("Error\n");
 return (1);
+}
 }
 if (num > 0)
 {
