@@ -1,51 +1,64 @@
 #include "variadic_functions.h"
-#include <stdarg.h>
-#include <stdio.h>
 /**
- *print_all - this functions prints all it’s args
- *@format: this is the separator
- *Return: void
- */
-void print_all(const char * const format, ...)
+* print_char - Prints a char.
+* @arg: A list of arguments pointing to
+* the character to be printed.
+*/
+void print_char(va_list arg)
 {
-	char *str;
-	int num, i = 0;
-	char c, s;
-	float float_num;
-	va_list args;
+char letter;
 
-	va_start(args, format);
-	while (format[i] != '\0')
-	{
-		switch (format[i])
-		{
-		case 's':
-			str = va_arg(args, char *);
-			if (str == NULL)
-				printf("(nil)");
-			printf("%s", str);
+letter = va_arg(arg, int);
 
-			break;
-		case 'c':
-			c = (char)va_arg(args, int);
-			printf("%c", c);
-			break;
-		case 'i':
-			num = va_arg(args, int);
-			printf("%d", num);
-			break;
-		case 'f':
-			float_num = (float)va_arg(args, double);
-			printf("%f", float_num);
-			break;
-		default:
-			break;
-		}
-		s = format[i];
-		if (format[i + 1] != '\0' && (s == 'i' || s == 's' || s == 'f' || s == 'c'))
-			printf(", ");
-		i++;
-	}
-	printf("\n");
-	va_end(args);
+printf("%c", letter);
 }
+
+/**
+* print_int - Prints an int.
+* @arg: A list of arguments pointing to
+* the integer to be printed.
+*/
+void print_int(va_list arg)
+{
+int num;
+
+num = va_arg(arg, int);
+
+printf("%d", num);
+}
+
+/**
+* print_float - Prints a float.
+* @arg: A list of arguments pointing to
+* the float to be printed.
+*/
+void print_float(va_list arg)
+{
+float num;
+
+num = va_arg(arg, double);
+
+printf("%f", num);
+}
+
+/**
+* print_string - Prints a string.
+* @arg: A list of arguments pointing to
+* the string to be printed.
+*/
+void print_string(va_list arg)
+{
+char *str;
+
+str = va_arg(arg, char *);
+
+if (str == NULL)
+{
+printf("(nil)");
+return;
+}
+
+printf("%s", str);
+}
+
+/**
