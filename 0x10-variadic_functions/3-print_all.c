@@ -1,58 +1,51 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
-
 /**
- * print_all - function that prints anything
- * @format: a list of types of arguments passed to the function
+ *print_all - this functions prints all it’s args
+ *@format: this is the separator
+ *Return: void
  */
-
 void print_all(const char * const format, ...)
 {
-va_list sepa;
-char *str;
-int i = 0;
-char format_char;
+	char *str;
+	int num, i = 0;
+	char c, s;
+	float float_num;
+	va_list args;
 
-va_start(sepa, format);
+	va_start(args, format);
+	while (format[i] != '\0')
+	{
+		switch (format[i])
+		{
+		case 's':
+			str = va_arg(args, char *);
+			if (str == NULL)
+				printf("(nil)");
+			printf("%s", str);
 
-while (format && format[i])
-{
-format_char = format[i];
-if (format[i + 1] == '\0')
-break;
-
-if (format_char == 'c')
-printf("%c, ", va_arg(sepa, int));
-else if (format_char == 'i')
-printf("%d, ", va_arg(sepa, int));
-else if (format_char == 'f')
-printf("%f, ", va_arg(sepa, double));
-else if (format_char == 's')
-{
-str = va_arg(sepa, char *);
-if (str == NULL)
-str = "(nil)";
-printf("%s, ", str);
-}
-i++;
-}
-
-format_char = format[i];
-if (format_char == 'c')
-printf("%c", va_arg(sepa, int));
-else if (format_char == 'i')
-printf("%d", va_arg(sepa, int));
-else if (format_char == 'f')
-printf("%f", va_arg(sepa, double));
-else if (format_char == 's')
-{
-str = va_arg(sepa, char *);
-if (str == NULL)
-str = "(nil)";
-printf("%s", str);
-}
-
-printf("\n");
-va_end(sepa);
+			break;
+		case 'c':
+			c = (char)va_arg(args, int);
+			printf("%c", c);
+			break;
+		case 'i':
+			num = va_arg(args, int);
+			printf("%d", num);
+			break;
+		case 'f':
+			float_num = (float)va_arg(args, double);
+			printf("%f", float_num);
+			break;
+		default:
+			break;
+		}
+		s = format[i];
+		if (format[i + 1] != '\0' && (s == 'i' || s == 's' || s == 'f' || s == 'c'))
+			printf(", ");
+		i++;
+	}
+	printf("\n");
+	va_end(args);
 }
