@@ -1,21 +1,40 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
- * free_list - free a `list_t` list
- * @head: The head of linked list
+ * main - check the code
+ *
+ * Return: Always 0.
  */
-void free_list(list_t *head)
+int main(void)
 {
-list_t *var;
-list_t *nxt_node;
+    list_t *head;
+    list_t *new;
+    list_t hello = {"World", 5, NULL};
+    size_t n;
 
-var = head;
+    head = &hello;
+    new = malloc(sizeof(list_t));
+    if (new == NULL)
+    {
+        printf("Error\n");
+        return (1);
+    }
+    new->str = strdup("Hello");
+    new->len = 5;
+    new->next = head;
+    head = new;
+    n = print_list(head);
+    printf("-> %lu elements\n", n);
 
-while (var != NULL)
-{
-nxt_node = var->next;
-free(var->str);
-free(var);
-var = nxt_node;
-}
+    printf("\n");
+    free(new->str);
+    new->str = NULL;
+    n = print_list(head);
+    printf("-> %lu elements\n", n);
+
+    free(new);
+    return (0);
 }
