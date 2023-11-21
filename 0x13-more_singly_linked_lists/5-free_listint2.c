@@ -10,10 +10,8 @@ listint_t *gum;
 if (head == NULL)
 return;
 
-	while (head != NULL)
-	{
-		next = head->next;
-		free(head);
-		head = next;
-	}
+while (*head != NULL)
+gum = *head;
+*head == (*head)->next;
+free(gum);
 }
